@@ -14,7 +14,6 @@ function App() {
         <Suspense fallback={null}>
           <Panorama />
         </Suspense>
-        <Box />
       </Canvas>
     </div>
   );

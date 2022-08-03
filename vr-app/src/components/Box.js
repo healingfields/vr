@@ -1,8 +1,9 @@
 import { useFrame } from "@react-three/fiber";
-import { useRef } from "react"
+import { useRef, useState } from "react"
 
 export default function Box({ rotate = false }) {
     const mesh = useRef();
+    const [hovered, setHovered] = useState(false);
 
     useFrame(() => {
         if (rotate) {
@@ -14,9 +15,11 @@ export default function Box({ rotate = false }) {
     return (
         <mesh
             scale={2}
-            ref={mesh}>
+            ref={mesh}
+            onPointerOver={(e) => setHovered(true)}
+            onPointerOut={(e) => setHovered(false)}>
             <boxGeometry />
-            <meshStandardMaterial color={'green'} />
+            <meshStandardMaterial color={hovered ? 'purple' : 'blue'} />
             <ambientLight intensity={0.5} />
             <spotLight
                 position={[10, 10, 10]}
